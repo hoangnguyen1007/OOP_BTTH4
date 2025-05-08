@@ -145,9 +145,10 @@ SoPhuc operator*(double x, SoPhuc a)
 SoPhuc operator/(SoPhuc a, SoPhuc b)
 {
 	SoPhuc kq;
-	kq.thuc = (a.thuc * b.thuc) + (a.ao * b.ao) / (b.thuc * b.thuc) + (b.ao * b.ao);
-	kq.ao = (a.ao * b.thuc) - (a.thuc * b.ao) / (b.thuc * b.thuc) + (b.ao * b.ao);
-	return kq;
+        double mau = b.thuc * b.thuc + b.ao * b.ao;
+        kq.thuc = (a.thuc * b.thuc + a.ao * b.ao) / mau;
+        kq.ao = (a.ao * b.thuc - a.thuc * b.ao) / mau;
+        return kq;
 }
 //Hàm nạp chông toán tử chia số phức với 1 số nguyên, cho phép chia số phức với 1 số nguyên và trả về số phức kq
 SoPhuc operator/(SoPhuc a, double x)
